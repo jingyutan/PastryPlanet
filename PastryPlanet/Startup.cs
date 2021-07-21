@@ -10,6 +10,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PastryPlanet.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
+using PastryPlanet.Models;
 
 namespace PastryPlanet
 {
@@ -29,6 +32,12 @@ namespace PastryPlanet
 
             services.AddDbContext<PastryPlanetContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PastryPlanetContext")));
+
+            services.AddIdentity<ApplicationUser, Microsoft.AspNetCore.Identity.IdentityRole>()
+            .AddDefaultUI()
+            .AddEntityFrameworkStores<PastryPlanetContext>()
+            .AddDefaultTokenProviders();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +56,7 @@ namespace PastryPlanet
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseAuthentication();
             app.UseRouting();
 
             app.UseAuthorization();
