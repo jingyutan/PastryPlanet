@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using PastryPlanet.Models;
 
 namespace PastryPlanet
 {
@@ -13,7 +15,9 @@ namespace PastryPlanet
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+            
+            using (var scope = host.Services.CreateScope())
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
