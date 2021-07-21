@@ -18,6 +18,21 @@ namespace PastryPlanet
             var host = CreateHostBuilder(args).Build();
             
             using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                try
+                {
+                    SeedData.Initialize(services);
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred while seeding the DB."); 
+                    // Try catch block to display error message if any were encountered while seeding DB
+                }
+            }
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
