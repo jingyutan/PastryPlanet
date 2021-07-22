@@ -27,7 +27,8 @@ namespace PastryPlanet.Models
                         Name = "Chewey Chocolate Chip Cookies",
                         Description = "Freshly baked, chewey cookies with pockets of flowey dark chocolate",
                         Price = 2.90,
-                        QuantityInStock = 20
+                        QuantityInStock = 20,
+                        Image = "chewycookie1.jpg"
                     },
 
                     new Product
@@ -35,7 +36,8 @@ namespace PastryPlanet.Models
                         Name = "Flakey Crossaints",
                         Description = "Perfectly laminated, buttery and decadent pastry.",
                         Price = 5.90,
-                        QuantityInStock = 15
+                        QuantityInStock = 15,
+                        Image = "croissant1.jpg"
                     },
 
                     new Product
@@ -43,7 +45,8 @@ namespace PastryPlanet.Models
                         Name = "Classic NY Cheesecake",
                         Description = "Indulgent and creamy with a crisp Graham Cracker crust.",
                         Price = 4.90,
-                        QuantityInStock = 25
+                        QuantityInStock = 25,
+                        Image = "cheesecake1.jpg"
                     }
                 );
                 context.SaveChanges();
