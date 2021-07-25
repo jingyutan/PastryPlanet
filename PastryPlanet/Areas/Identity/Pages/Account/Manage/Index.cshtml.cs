@@ -23,7 +23,7 @@ namespace PastryPlanet.Areas.Identity.Pages.Account.Manage
             _signInManager = signInManager;
         }
 
-        public string Username { get; set; }
+        //public string Username { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -36,18 +36,25 @@ namespace PastryPlanet.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Display(Name = "Full name")]
+            public string FullName { get; set; }
+            public string UserName { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
+            var fullName = (await _userManager.GetUserAsync(User)).FullName;
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
-            Username = userName;
+            //Username = userName;
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                UserName = userName,
+                PhoneNumber = phoneNumber,
+                FullName = fullName
             };
         }
 
@@ -77,6 +84,16 @@ namespace PastryPlanet.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
+            var userName = await _userManager.GetUserNameAsync(user);
+            if (Input.UserName != userName)
+            {
+                var setUsernameResult = await _userManager.SetUserNameAsync(user, Input.UserName);
+                if (!setUsernameResult.Succeeded)
+                {
+                    StatusMessage = "Unexpected error when trying to set Username.";
+                    return RedirectToPage();
+                }
+            }
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             if (Input.PhoneNumber != phoneNumber)
             {
@@ -84,6 +101,17 @@ namespace PastryPlanet.Areas.Identity.Pages.Account.Manage
                 if (!setPhoneResult.Succeeded)
                 {
                     StatusMessage = "Unexpected error when trying to set phone number.";
+                    return RedirectToPage();
+                }
+            }
+            var fullName = (await _userManager.GetUserAsync(User)).FullName;
+            if (Input.FullName != fullName)
+            {
+                user.FullName = Input.FullName;
+                var setFullNameResult = await _userManager.UpdateAsync(user);
+                if (!setFullNameResult.Succeeded)
+                {
+                    StatusMessage = "Unexpected error when trying to set full name.";
                     return RedirectToPage();
                 }
             }
