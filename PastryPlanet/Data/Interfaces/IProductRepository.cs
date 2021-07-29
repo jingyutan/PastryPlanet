@@ -7,7 +7,7 @@ using PastryPlanet.Models;
 
 namespace PastryPlanet.Data.Interfaces
 {
-    interface IProductRepository
+    public interface IProductRepository
     {
         IEnumerable<Product> Products { get; set; }
         IEnumerable<Product> PreferredProducts { get; set; }
