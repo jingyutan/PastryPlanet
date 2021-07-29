@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20210729082614_ShoppingCartItems.cs" />
     <Compile Remove="Migrations\20210729082614_ShoppingCartItems.Designer.cs" />
+    <Compile Remove="Migrations\20210729161720_Audit.cs" />
+    <Compile Remove="Migrations\20210729161720_Audit.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +22,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Interfaces\" />
   </ItemGroup>
 
 </Project>
