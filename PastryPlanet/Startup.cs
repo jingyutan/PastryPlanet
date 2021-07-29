@@ -63,6 +63,7 @@ namespace PastryPlanet
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
             app.UseAuthentication();
             app.UseRouting();
 
