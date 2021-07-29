@@ -1,65 +1,43 @@
 ﻿@page
 @model PastryPlanet.Pages.Roles.IndexModel
-
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Role Listing";
 }
-
-<h1>Index</h1>
-
-<h4>ApplicationRole</h4>
-<hr />
+<h2>Role Listing</h2>
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ApplicationRole.Description" class="control-label"></label>
-                <input asp-for="ApplicationRole.Description" class="form-control" />
-                <span asp-validation-for="ApplicationRole.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApplicationRole.CreatedDate" class="control-label"></label>
-                <input asp-for="ApplicationRole.CreatedDate" class="form-control" />
-                <span asp-validation-for="ApplicationRole.CreatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApplicationRole.IPAddress" class="control-label"></label>
-                <input asp-for="ApplicationRole.IPAddress" class="form-control" />
-                <span asp-validation-for="ApplicationRole.IPAddress" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApplicationRole.Id" class="control-label"></label>
-                <input asp-for="ApplicationRole.Id" class="form-control" />
-                <span asp-validation-for="ApplicationRole.Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApplicationRole.Name" class="control-label"></label>
-                <input asp-for="ApplicationRole.Name" class="form-control" />
-                <span asp-validation-for="ApplicationRole.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApplicationRole.NormalizedName" class="control-label"></label>
-                <input asp-for="ApplicationRole.NormalizedName" class="form-control" />
-                <span asp-validation-for="ApplicationRole.NormalizedName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApplicationRole.ConcurrencyStamp" class="control-label"></label>
-                <input asp-for="ApplicationRole.ConcurrencyStamp" class="form-control" />
-                <span asp-validation-for="ApplicationRole.ConcurrencyStamp" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        <a asp-page="Create">[Create New Role]</a> |
+        <a asp-page="Manage">[Manage User Roles]</a>
     </div>
 </div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationRole[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationRole[0].Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ApplicationRole)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
