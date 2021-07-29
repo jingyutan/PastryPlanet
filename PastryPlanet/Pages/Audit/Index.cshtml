@@ -7,8 +7,9 @@
 
 <h1>Index</h1>
 
+
+<a asp-page="./ProductAudit">Check audits made previously</a>
 <p>
-    <a asp-page="Create">Create New</a>
 </p>
 <table class="table" style="color:white;">
     <thead>
@@ -22,9 +23,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.AuditRecord[0].DateTimeStamp)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AuditRecord[0].KeyProductID)
-            </th>
+            <th>Product Record</th>
             <th></th>
         </tr>
     </thead>
@@ -40,9 +39,18 @@
             <td>
                 @Html.DisplayFor(modelItem => item.DateTimeStamp)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KeyProductID)
-            </td>
+
+            @if (item.KeyProductID == 0)
+            {
+                <td>failed</td>
+            }
+            else
+            {
+                <td>
+                    <a asp-page="./ProductAuditDetails" asp-route-id="@item.KeyProductID">Product</a>
+                </td>
+            }
+
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Audit_ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.Audit_ID">Details</a> |
