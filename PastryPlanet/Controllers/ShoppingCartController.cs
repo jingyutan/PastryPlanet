@@ -24,6 +24,34 @@ namespace PastryPlanet.Controllers
         {
             var items = _shoppingCart.GetShoppingCartItems();
             _shoppingCart.ShoppingCartItems = items;
+
+            var sCVM = new ShoppingCartViewModel
+            {
+                ShoppingCart = _shoppingCart,
+                ShoppingCartTotal = _shoppingCart.GetShoppingCartTotal()
+            };
+            return View(sCVM);
         }
+
+        public RedirectToActionResult AddToShoppingCart(int productId)
+        {
+            var selectedProduct = _productRepository.Products.FirstOrDefault(p => p.ID == productId);
+            if (selectedProduct != null)
+            {
+                _shoppingCart.AddToCart(selectedProduct, 1);
+            }
+            return RedirectToAction("Index");
+        }
+
+        public RedirectToActionResult RemoveFromShoppingCart(int productId)
+        {
+            var selectedProduct = _productRepository.Products.FirstOrDefault(p => p.ID == productId);
+            if (selectedProduct != null)
+            {
+                _shoppingCart.RemoveFromCart(selectedProduct);
+            }
+            return RedirectToAction("Index");
+        }
+
     }
 }
