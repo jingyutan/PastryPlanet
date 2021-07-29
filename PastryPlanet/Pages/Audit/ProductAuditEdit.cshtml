@@ -1,0 +1,56 @@
+﻿@page
+@model PastryPlanet.Pages.Audit.ProductAuditEditModel
+
+@{
+    ViewData["Title"] = "ProductAuditEdit";
+}
+
+<h1>ProductAuditEdit</h1>
+
+<h4>ProductAudit</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProductAudit.ID" />
+            <div class="form-group">
+                <label asp-for="ProductAudit.Name" class="control-label"></label>
+                <input asp-for="ProductAudit.Name" class="form-control" />
+                <span asp-validation-for="ProductAudit.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductAudit.Description" class="control-label"></label>
+                <input asp-for="ProductAudit.Description" class="form-control" />
+                <span asp-validation-for="ProductAudit.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductAudit.Price" class="control-label"></label>
+                <input asp-for="ProductAudit.Price" class="form-control" />
+                <span asp-validation-for="ProductAudit.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductAudit.QuantityInStock" class="control-label"></label>
+                <input asp-for="ProductAudit.QuantityInStock" class="form-control" />
+                <span asp-validation-for="ProductAudit.QuantityInStock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductAudit.Image" class="control-label"></label>
+                <input asp-for="ProductAudit.Image" class="form-control" />
+                <span asp-validation-for="ProductAudit.Image" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./ProductAudit">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

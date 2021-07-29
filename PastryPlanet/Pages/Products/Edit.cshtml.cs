@@ -50,6 +50,37 @@ namespace PastryPlanet.Pages.Products
 
             _context.Attach(Product).State = EntityState.Modified;
 
+            var prod = new ProductAudit
+            {
+                Name = Product.Name,
+                Description = Product.Description,
+                Price = Product.Price,
+                QuantityInStock = Product.QuantityInStock,
+                Image = Product.Image,
+                Productid = Product.ID,
+                DateTimeStamp = DateTime.Now,
+                Username = User.Identity.Name.ToString()
+            };
+            _context.ProductAudit.Add(prod);
+
+
+            if (await _context.SaveChangesAsync() > 0)
+            {
+                // Create an auditrecord object
+                var auditrecord = new AuditRecord();
+                auditrecord.AuditActionType = "Edit Product Record";
+                auditrecord.DateTimeStamp = DateTime.Now;
+                auditrecord.KeyProductID = prod.ID;
+                // Get current logged-in user
+                var userID = User.Identity.Name.ToString();
+                auditrecord.Username = userID;
+
+                _context.AuditRecords.Add(auditrecord);
+                await _context.SaveChangesAsync();
+            }
+
+
+
             try
             {
                 await _context.SaveChangesAsync();

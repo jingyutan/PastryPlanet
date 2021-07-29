@@ -1,0 +1,67 @@
+﻿@page
+@model PastryPlanet.Pages.Audit.ProductAuditDetailsModel
+
+@{
+    ViewData["Title"] = "ProductAuditDetails";
+}
+
+<h1>ProductAuditDetails</h1>
+
+<div>
+    <h4>ProductAudit</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductAudit.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductAudit.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductAudit.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductAudit.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductAudit.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductAudit.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductAudit.QuantityInStock)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductAudit.QuantityInStock)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductAudit.Image)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductAudit.Image)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductAudit.Productid)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductAudit.Productid)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductAudit.DateTimeStamp)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductAudit.DateTimeStamp)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductAudit.Username)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductAudit.Username)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./ProductAuditEdit" asp-route-id="@Model.ProductAudit.ID">Edit</a> |
+    <a asp-page="./ProductAudit">Back to List</a>
+</div>
