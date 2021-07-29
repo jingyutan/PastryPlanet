@@ -95,7 +95,6 @@ namespace PastryPlanet.Areas.Identity.Pages.Account
                     var auditrecord = new AuditRecord();
                     auditrecord.AuditActionType = "Failed Login";
                     auditrecord.DateTimeStamp = DateTime.Now;
-                    auditrecord.KeyProductID = 999;
                     // 999 – dummy record 
 
                     auditrecord.Username = Input.Email;
