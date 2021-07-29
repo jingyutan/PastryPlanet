@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using PastryPlanet.Data;
 using PastryPlanet.Models;
 
-namespace PastryPlanet.Pages.Products
+namespace PastryPlanet.Pages.Audit
 {
     public class CreateModel : PageModel
     {
@@ -21,13 +21,11 @@ namespace PastryPlanet.Pages.Products
 
         public IActionResult OnGet()
         {
-            //for testing error management
-            //throw new Exception("Test Error");
             return Page();
         }
 
         [BindProperty]
-        public Product Product { get; set; }
+        public AuditRecord AuditRecord { get; set; }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
@@ -38,24 +36,8 @@ namespace PastryPlanet.Pages.Products
                 return Page();
             }
 
-            _context.Product.Add(Product);
-            //await _context.SaveChangesAsync();
-
-            // Once a record is added, create an audit record
-            if (await _context.SaveChangesAsync() > 0)
-            {
-                // Create an auditrecord object
-                var auditrecord = new AuditRecord();
-                auditrecord.AuditActionType = "Add Product Record";
-                auditrecord.DateTimeStamp = DateTime.Now;
-                auditrecord.KeyProductID = Product.ID;
-                // Get current logged-in user
-                var userID = User.Identity.Name.ToString();
-                auditrecord.Username = userID;
-
-                _context.AuditRecords.Add(auditrecord);
-                await _context.SaveChangesAsync();
-            }
+            _context.AuditRecords.Add(AuditRecord);
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

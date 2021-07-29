@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PastryPlanet.Data;
 
 namespace PastryPlanet.Migrations
 {
     [DbContext(typeof(PastryPlanetContext))]
-    partial class PastryPlanetContextModelSnapshot : ModelSnapshot
+    [Migration("20210728145208_AddAudit")]
+    partial class AddAudit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -275,29 +277,6 @@ namespace PastryPlanet.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("PastryPlanet.Models.ShoppingCartItem", b =>
-                {
-                    b.Property<int>("ShoppingCartItemId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProductID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ShoppingCartId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ShoppingCartItemId");
-
-                    b.HasIndex("ProductID");
-
-                    b.ToTable("ShoppingCartItems");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -347,13 +326,6 @@ namespace PastryPlanet.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("PastryPlanet.Models.ShoppingCartItem", b =>
-                {
-                    b.HasOne("PastryPlanet.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductID");
                 });
 #pragma warning restore 612, 618
         }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using PastryPlanet.Data;
 using PastryPlanet.Models;
 
-namespace PastryPlanet.Pages.Products
+namespace PastryPlanet.Pages.Audit
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace PastryPlanet.Pages.Products
         }
 
         [BindProperty]
-        public Product Product { get; set; }
+        public AuditRecord AuditRecord { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +29,9 @@ namespace PastryPlanet.Pages.Products
                 return NotFound();
             }
 
-            Product = await _context.Product.FirstOrDefaultAsync(m => m.ID == id);
+            AuditRecord = await _context.AuditRecords.FirstOrDefaultAsync(m => m.Audit_ID == id);
 
-            if (Product == null)
+            if (AuditRecord == null)
             {
                 return NotFound();
             }
@@ -45,26 +45,14 @@ namespace PastryPlanet.Pages.Products
                 return NotFound();
             }
 
-            Product = await _context.Product.FindAsync(id);
+            AuditRecord = await _context.AuditRecords.FindAsync(id);
 
-            if (Product != null)
+            if (AuditRecord != null)
             {
-                _context.Product.Remove(Product);
-                //await _context.SaveChangesAsync();
-
-                // Once a record is deleted, create an audit record
-                if (await _context.SaveChangesAsync() > 0)
-                {
-                    var auditrecord = new AuditRecord();
-                    auditrecord.AuditActionType = "Delete Product Record";
-                    auditrecord.DateTimeStamp = DateTime.Now;
-                    auditrecord.KeyProductID = Product.ID;
-                    var userID = User.Identity.Name.ToString();
-                    auditrecord.Username = userID;
-                    _context.AuditRecords.Add(auditrecord);
-                    await _context.SaveChangesAsync();
-                }
+                _context.AuditRecords.Remove(AuditRecord);
+                await _context.SaveChangesAsync();
             }
+
             return RedirectToPage("./Index");
         }
     }
