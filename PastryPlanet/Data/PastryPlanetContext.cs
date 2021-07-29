@@ -8,7 +8,7 @@ using PastryPlanet.Models;
 
 namespace PastryPlanet.Data
 {
-    public class PastryPlanetContext : IdentityDbContext<ApplicationUser>
+    public class PastryPlanetContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         public PastryPlanetContext (DbContextOptions<PastryPlanetContext> options)
             : base(options)
