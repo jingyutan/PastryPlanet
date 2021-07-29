@@ -13,6 +13,7 @@ using PastryPlanet.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using PastryPlanet.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace PastryPlanet
 {
@@ -38,6 +39,11 @@ namespace PastryPlanet
             .AddDefaultUI()
             .AddEntityFrameworkStores<PastryPlanetContext>()
             .AddDefaultTokenProviders();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sp => ShoppingCart.GetCart(sp));
+            services.AddMemoryCache();
+            services.AddSession();
 
         }
 

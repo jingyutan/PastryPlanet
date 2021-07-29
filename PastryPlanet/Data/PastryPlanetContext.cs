@@ -24,6 +24,6 @@ namespace PastryPlanet.Data
         }
 
         public DbSet<PastryPlanet.Models.Product> Product { get; set; }
-        public DbSet<CartItem> ShoppingCartItems { get; set; }
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
     }
 }
