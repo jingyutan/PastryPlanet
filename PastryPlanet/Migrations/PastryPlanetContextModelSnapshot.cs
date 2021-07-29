@@ -276,62 +276,39 @@ namespace PastryPlanet.Migrations
                 });
 
             modelBuilder.Entity("PastryPlanet.Models.ProductAudit", b =>
-            {
-                b.Property<int>("ID")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int")
-                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                b.Property<DateTime>("DateTimeStamp")
-                    .HasColumnType("datetime2");
-
-                b.Property<string>("Description")
-                    .HasColumnType("nvarchar(max)");
-
-                b.Property<string>("Image")
-                    .HasColumnType("nvarchar(max)");
-
-                b.Property<string>("Name")
-                    .HasColumnType("nvarchar(max)");
-
-                b.Property<double>("Price")
-                    .HasColumnType("float");
-
-                b.Property<int>("Productid")
-                    .HasColumnType("int");
-
-                b.Property<int>("QuantityInStock")
-                    .HasColumnType("int");
-
-                b.Property<string>("Username")
-                    .HasColumnType("nvarchar(max)");
-
-                b.HasKey("ID");
-
-                b.ToTable("ProductAudit");
-            });
-
-            modelBuilder.Entity("PastryPlanet.Models.ShoppingCartItem", b =>
                 {
-                    b.Property<int>("ShoppingCartItemId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("DateTimeStamp")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int?>("ProductID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ShoppingCartId")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ShoppingCartItemId");
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("ProductID");
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("ShoppingCartItems");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Productid")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuantityInStock")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("ProductAudit");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -383,13 +360,6 @@ namespace PastryPlanet.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("PastryPlanet.Models.ShoppingCartItem", b =>
-                {
-                    b.HasOne("PastryPlanet.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductID");
                 });
 #pragma warning restore 612, 618
         }

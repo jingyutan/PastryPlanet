@@ -41,7 +41,6 @@ namespace PastryPlanet
             .AddDefaultTokenProviders();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped(sp => ShoppingCart.GetCart(sp));
             services.AddMemoryCache();
             services.AddSession();
 

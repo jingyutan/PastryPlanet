@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20210729082614_ShoppingCartItems.cs" />
     <Compile Remove="Migrations\20210729082614_ShoppingCartItems.Designer.cs" />
+    <Compile Remove="Migrations\20210729161720_Audit.cs" />
+    <Compile Remove="Migrations\20210729161720_Audit.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
