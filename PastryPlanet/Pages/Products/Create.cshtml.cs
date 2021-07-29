@@ -21,6 +21,8 @@ namespace PastryPlanet.Pages.Products
 
         public IActionResult OnGet()
         {
+            //for testing error management
+            //throw new Exception("Test Error");
             return Page();
         }
 
