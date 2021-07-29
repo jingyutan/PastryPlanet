@@ -51,6 +51,13 @@
                 @Html.DisplayFor(modelItem => item.QuantityInStock)
             </td>
             <td>
+                <a href="/AddToCart.aspx?productID=<%#:Item.ProductID %>">
+                    <span class="ProductListItem">
+                        <b>Add To Cart<b>
+                    </span>
+                </a>
+            </td>
+            <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PastryPlanet.Data;
 
 namespace PastryPlanet.Migrations
 {
     [DbContext(typeof(PastryPlanetContext))]
-    partial class PastryPlanetContextModelSnapshot : ModelSnapshot
+    [Migration("20210729082832_CartItem")]
+    partial class CartItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -222,30 +224,6 @@ namespace PastryPlanet.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("PastryPlanet.Models.AuditRecord", b =>
-                {
-                    b.Property<int>("Audit_ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AuditActionType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateTimeStamp")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("KeyProductID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Username")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Audit_ID");
-
-                    b.ToTable("AuditRecords");
                 });
 
             modelBuilder.Entity("PastryPlanet.Models.Product", b =>

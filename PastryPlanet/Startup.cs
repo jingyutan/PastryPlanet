@@ -13,6 +13,7 @@ using PastryPlanet.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using PastryPlanet.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace PastryPlanet
 {
@@ -39,6 +40,11 @@ namespace PastryPlanet
             .AddEntityFrameworkStores<PastryPlanetContext>()
             .AddDefaultTokenProviders();
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sp => ShoppingCart.GetCart(sp));
+            services.AddMemoryCache();
+            services.AddSession();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +64,7 @@ namespace PastryPlanet
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
             app.UseAuthentication();
             app.UseRouting();
 
