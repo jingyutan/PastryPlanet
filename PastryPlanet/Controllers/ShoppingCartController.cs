@@ -22,7 +22,8 @@ namespace PastryPlanet.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var items = _shoppingCart.GetShoppingCartItems();
+            _shoppingCart.ShoppingCartItems = items;
         }
     }
 }
