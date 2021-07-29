@@ -17,9 +17,5 @@ namespace PastryPlanet.Models
         public int QuantityInStock { get; set; } // Stock of the product
         public string Image { get; set; } // Image path of the product
 
-        /*public string Category { get; set; }  Category of the product 
-                                              (might not be needed, 
-                                                comment out first)*/
-
     }
 }
