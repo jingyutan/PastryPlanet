@@ -27,10 +27,22 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="">Cart</a>
                         </li>
+                        @if (User.IsInRole("Admin"))
+                        {
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Audit/Index">Audit</a>
                         </li>
-
+                        }
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Feedback/Index">Feedback</a>
+                        </li>
+                        @if (User.IsInRole("Admin")) 
+                        {
+                            <li class="nav-item">
+                             <a class="nav-link text-dark" asp-area="" asp-page="/Roles/Index">Roles</a>
+                            </li> 
+                        }
+                        
                     </ul>
                 </div>
                 <partial name="_LoginPartial" />

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using PastryPlanet.Data;
 using PastryPlanet.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PastryPlanet.Pages.Products
 {
