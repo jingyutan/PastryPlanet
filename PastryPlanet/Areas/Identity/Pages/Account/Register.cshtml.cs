@@ -62,6 +62,7 @@ namespace PastryPlanet.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
+            [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "Please enter only letters.")]
             [Display(Name = "Full Name")]
             public string FullName { get; set; }
 
