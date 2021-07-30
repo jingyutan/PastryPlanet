@@ -1,0 +1,31 @@
+﻿@page
+@model PastryPlanet.Pages.Feedback.IndexModel
+@{
+}
+
+<h1>Feedback</h1>
+<p>Give us your feedback!</p>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group row">
+                <label asp-for="ApplicationUser.UserName" class="control-label">Name:</label>
+                <input asp-for="ApplicationUser.UserName" type="text" class="form-control" />
+            </div>
+            <div class="form-group row">
+                <label asp-for="ApplicationUser.Email" class="control-label">Email:</label>
+                <input asp-for="ApplicationUser.Email" type="email" class="form-control" />
+            </div>
+            <div class="form-group row">
+                <label class="control-label">Feedback:</label>
+                <input type="text" class="form-control" />
+            </div>
+            <div class="form-group row">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
