@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PastryPlanet.Data;
 using PastryPlanet.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PastryPlanet.Pages.Audit
 {
+    [Authorize(Roles = "Admin")] //Comment this out if you want to troubleshoot
     public class CreateModel : PageModel
     {
         private readonly PastryPlanet.Data.PastryPlanetContext _context;

@@ -35,7 +35,7 @@ namespace PastryPlanet
             services.AddDbContext<PastryPlanetContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PastryPlanetContext")));
 
-            services.AddIdentity<ApplicationUser, Microsoft.AspNetCore.Identity.IdentityRole>()
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
             .AddDefaultUI()
             .AddEntityFrameworkStores<PastryPlanetContext>()
             .AddDefaultTokenProviders();
