@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 namespace PastryPlanet.Pages.Roles
 {
-	//[Authorize(Roles = "Admin")]
+	[Authorize(Roles = "Admin")]
 	public class IndexModel : PageModel
 	{
 		private readonly RoleManager<ApplicationRole> _roleManager;
