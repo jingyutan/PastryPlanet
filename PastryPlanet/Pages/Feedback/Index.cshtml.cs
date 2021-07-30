@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using PastryPlanet.Data;
 using Microsoft.AspNetCore.Authorization;
 
+
 namespace PastryPlanet.Pages.Feedback
 {
+    [Authorize(Roles="User, Admin")]
     public class IndexModel : PageModel
     {
         private readonly PastryPlanetContext _context;
