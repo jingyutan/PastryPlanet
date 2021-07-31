@@ -38,6 +38,7 @@ namespace PastryPlanet.Areas.Identity.Pages.Account.Manage
             [Required]
             [DataType(DataType.Password)]
             [Display(Name = "Current password")]
+            [RegularExpression("^[a-zA-Z0-9@#$&]*$", ErrorMessage = "Please enter valid string.")]
             public string OldPassword { get; set; }
 
             [Required]
