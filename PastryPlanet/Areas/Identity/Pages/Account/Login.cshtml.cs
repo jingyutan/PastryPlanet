@@ -52,6 +52,7 @@ namespace PastryPlanet.Areas.Identity.Pages.Account
 
             [Required]
             [DataType(DataType.Password)]
+            [RegularExpression("^[a-zA-Z0-9@#$&]*$", ErrorMessage = "Please enter valid string.")]
             public string Password { get; set; }
 
             [Display(Name = "Remember me?")]
