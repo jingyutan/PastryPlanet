@@ -19,7 +19,7 @@
                 <img src="@Url.Content("~/" + item.Product.Image)" style="width: 160px;" />
             </a>
             <h3>@item.Product.Name</h3>
-            <p>Total: $@Convert.ToDecimal((item.Product.Price * item.Quantity))<span>0</span></p>
+            <p>Total: $@Convert.ToDecimal((item.Product.Price * item.Quantity))</p>
             <label asp-for="@item.Quantity">Quantity</label>
             <input asp-for="@item.Quantity" type="text" name="Quantity" class="form-control col-3">
             <button type="submit" class="btn btn-primary" asp-page-handler="update" asp-route-id="@item.ProductID">
