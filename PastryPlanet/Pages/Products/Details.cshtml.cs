@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using PastryPlanet.Data;
 using PastryPlanet.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PastryPlanet.Pages.Products
 {
+    
     public class DetailsModel : PageModel
     {
         private readonly PastryPlanet.Data.PastryPlanetContext _context;

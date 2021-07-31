@@ -8,10 +8,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PastryPlanet.Data;
 using PastryPlanet.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PastryPlanet.Pages.Products
 {
-    //Testing
+    [Authorize(Roles="Admin")]
     public class CreateModel : PageModel
     {
         private readonly PastryPlanet.Data.PastryPlanetContext _context;

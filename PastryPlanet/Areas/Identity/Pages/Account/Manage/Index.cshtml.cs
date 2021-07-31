@@ -37,6 +37,7 @@ namespace PastryPlanet.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
 
+            [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "Please enter only letters.")]
             [Display(Name = "Full name")]
             public string FullName { get; set; }
             public string UserName { get; set; }

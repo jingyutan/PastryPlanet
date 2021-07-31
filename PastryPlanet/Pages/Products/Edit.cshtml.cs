@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PastryPlanet.Data;
 using PastryPlanet.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PastryPlanet.Pages.Products
 {
+    [Authorize(Roles="Admin")]
     public class EditModel : PageModel
     {
         private readonly PastryPlanet.Data.PastryPlanetContext _context;
