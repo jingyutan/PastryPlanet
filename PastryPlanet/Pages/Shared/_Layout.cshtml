@@ -1,4 +1,7 @@
 ﻿<!DOCTYPE html>
+@using Microsoft.AspNetCore.Identity
+@using PastryPlanet.Models
+@inject SignInManager<ApplicationUser> SignInManager
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -24,9 +27,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Products/Index">Products</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="">Cart</a>
-                        </li>
+
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Cart/Index">Cart</a>
+                            </li>
+                        }
+
                         @if (User.IsInRole("Admin"))
                         {
                         <li class="nav-item">
@@ -57,7 +65,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container" style="color:white;">
-            &copy; 2021 - PastryPlanet 
+            &copy; 2021 - PastryPlanet
         </div>
     </footer>
 

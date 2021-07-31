@@ -1,4 +1,8 @@
 ﻿@page
+@using Microsoft.AspNetCore.Identity
+@using PastryPlanet.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 @model PastryPlanet.Pages.Products.DetailsModel
 
 @{
@@ -29,7 +33,7 @@
                 @Html.DisplayNameFor(model => model.Product.Price)
             </dt>
             <dd class="col-lg-9 col-sm-8">
-                $@Html.DisplayFor(model => model.Product.Price)<p style="display:inline">0</p>             
+                $@Html.DisplayFor(model => model.Product.Price)<span>0</span>
             </dd>
             <dt class="col-lg-3 col-sm-4">
                 @Html.DisplayNameFor(model => model.Product.QuantityInStock)
@@ -39,8 +43,27 @@
             </dd>
 
         </dl>
+
     </div>
-    
+    @if (!SignInManager.IsSignedIn(User))
+            {
+        <p style="color: lightblue">Please login first to add products to cart</p>
+            }
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <form method="post">
+            <div class="row quan">
+                <label asp-for="Input.Quantity" class="col-sm-2">Quantity</label>
+                <input asp-for="Input.Quantity" type="text" class="form-control col-2">
+                
+                <button class="btn btn-secondary" style="margin: 0em 2em;">Add to Cart</button>
+            </div>
+            <p></p>
+        </form>
+        
+
+    }
 </div>
 <div>
     @if (User.IsInRole("Admin"))

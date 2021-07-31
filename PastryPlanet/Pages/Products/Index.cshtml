@@ -48,15 +48,15 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                @Html.DisplayFor(modelItem => item.Price)<span>0</span>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.QuantityInStock)
             </td>
             <td>
-                <a href=""> <!-- TODO: This is where the add to cart page should be linked-->
+                <a asp-page="./Details" asp-route-id="@item.ID"> <!-- TODO: This is where the add to cart page should be linked-->
                     <span class="ProductListItem">
-                        <b>Add To Cart<b>
+                        <b>Add To Cart</b>
                     </span>
                 </a>
             </td>
