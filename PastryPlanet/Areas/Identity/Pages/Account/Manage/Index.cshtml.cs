@@ -14,13 +14,16 @@ namespace PastryPlanet.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly PastryPlanet.Data.PastryPlanetContext _context;
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            PastryPlanet.Data.PastryPlanetContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
 
         //public string Username { get; set; }
@@ -118,6 +121,16 @@ namespace PastryPlanet.Areas.Identity.Pages.Account.Manage
                     StatusMessage = "Unexpected error when trying to set full name.";
                     return RedirectToPage();
                 }
+
+                // change full name attempt - create an audit record
+                var email = user.Email;
+                var auditrecord = new AuditRecord();
+                auditrecord.AuditActionType = "Change full name";
+                auditrecord.DateTimeStamp = DateTime.Now;
+
+                auditrecord.Username = email;
+                _context.AuditRecords.Add(auditrecord);
+                await _context.SaveChangesAsync();
             }
 
             await _signInManager.RefreshSignInAsync(user);

@@ -8,7 +8,7 @@
 <h1>Audit Log</h1>
 
 
-<a asp-page="./ProductAudit">Check audits made previously</a>
+<a asp-page="./ProductAudit" style="text-decoration: underline;">Check audits made previously</a>
 <p>
 </p>
 <table class="table" style="color:white;">
@@ -42,7 +42,7 @@
 
             @if (item.KeyProductID == 0)
             {
-                <td>failed</td>
+                <td></td>
             }
             else
             {
