@@ -47,6 +47,7 @@ namespace PastryPlanet.Areas.Identity.Pages.Account.Manage
             [Required]
             [EmailAddress]
             [Display(Name = "New email")]
+            [RegularExpression("^[a-zA-Z0-9@.]*$", ErrorMessage = "Please enter valid email.")]
             public string NewEmail { get; set; }
         }
 
