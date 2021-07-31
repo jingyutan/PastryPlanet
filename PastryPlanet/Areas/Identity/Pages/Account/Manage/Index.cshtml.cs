@@ -42,7 +42,7 @@ namespace PastryPlanet.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Full name")]
             public string FullName { get; set; }
 
-            [RegularExpression("^[a-zA-Z0-9@]*$", ErrorMessage = "Please enter valid username.")]
+            [RegularExpression("^[a-zA-Z0-9@.]*$", ErrorMessage = "Please enter valid username.")]
             public string UserName { get; set; }
         }
 
