@@ -35,11 +35,14 @@ namespace PastryPlanet.Areas.Identity.Pages.Account.Manage
         {
             [Phone]
             [Display(Name = "Phone number")]
+            [RegularExpression(@"^[0-9]{8}$", ErrorMessage = "please enter 8 digit phone number")]
             public string PhoneNumber { get; set; }
 
             [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "Please enter only letters.")]
             [Display(Name = "Full name")]
             public string FullName { get; set; }
+
+            [RegularExpression("^[a-zA-Z0-9@]*$", ErrorMessage = "Please enter valid username.")]
             public string UserName { get; set; }
         }
 
