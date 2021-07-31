@@ -24,17 +24,20 @@ namespace PastryPlanet.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly PastryPlanet.Data.PastryPlanetContext _context;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            PastryPlanet.Data.PastryPlanetContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = context;
         }
 
         [BindProperty]
@@ -79,11 +82,25 @@ namespace PastryPlanet.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email,
+                var user = new ApplicationUser { 
+                    UserName = Input.Email,
+                    Email = Input.Email,
                     FullName = Input.FullName};
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
+                    //add new cart
+                    var cart = new cart
+                    {
+                        UserID = user.Id
+                    };
+
+                    await _context.Cart.AddAsync(cart);
+                    await _context.SaveChangesAsync();
+
+
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
