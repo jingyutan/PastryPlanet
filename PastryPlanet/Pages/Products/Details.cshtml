@@ -46,22 +46,25 @@
 
     </div>
     @if (!SignInManager.IsSignedIn(User))
-            {
+    {
         <p style="color: lightblue">Please login first to add products to cart</p>
-            }
+    }
 
     @if (SignInManager.IsSignedIn(User))
     {
         <form method="post">
             <div class="row quan">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
                 <label asp-for="Input.Quantity" class="col-sm-2">Quantity</label>
                 <input asp-for="Input.Quantity" type="text" class="form-control col-2">
-                
+                <span asp-validation-for="Input.Quantity" class="text-danger"></span>
+
                 <button class="btn btn-secondary" style="margin: 0em 2em;">Add to Cart</button>
             </div>
             <p></p>
         </form>
-        
+
 
     }
 </div>
@@ -72,3 +75,8 @@
     }
     <a asp-page="./Index">Back to List</a>
 </div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

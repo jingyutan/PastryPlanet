@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using PastryPlanet.Data;
 using PastryPlanet.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.ComponentModel.DataAnnotations;
 
 namespace PastryPlanet.Pages.Products
 {
@@ -123,6 +124,7 @@ namespace PastryPlanet.Pages.Products
     }
     public class ProductInput
     {
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Please enter numbers only.")]
         public int Quantity { get; set; } = 1;
     }
 }
