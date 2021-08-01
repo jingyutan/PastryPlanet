@@ -58,9 +58,12 @@ namespace PastryPlanet.Pages.Products
 
         public async Task<IActionResult> OnPostAsync(int id, ProductInput Input)
         {
-            user = await _userManager.GetUserAsync(User);
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
 
-            
+            user = await _userManager.GetUserAsync(User);            
             //get cart by user id 
             cart = await _context.Cart.FirstOrDefaultAsync(c => c.UserID == user.Id);
             Product = await _context.Product.FirstOrDefaultAsync(m => m.ID == id);
