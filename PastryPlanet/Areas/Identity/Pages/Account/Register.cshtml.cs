@@ -81,6 +81,7 @@ namespace PastryPlanet.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+
             returnUrl = returnUrl ?? Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
@@ -93,6 +94,9 @@ namespace PastryPlanet.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, "Urien");
+                    await _context.SaveChangesAsync();
+
                     //add new cart
                     var cart = new cart
                     {
