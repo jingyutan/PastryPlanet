@@ -40,15 +40,23 @@ namespace PastryPlanet.Pages.Cart
         }
         public async Task<IActionResult> OnPostUpdateAsync(int id)
         {
-            int updatedQuantity = Convert.ToInt32(Request.Form["Quantity"]);
             ApplicationUser user = await _userManager.GetUserAsync(User);
             CartItem cartItem = await GetCartItemByProductIdForUserAsync(user.Id, id);
 
+            int updatedQuantity = Convert.ToInt32(Request.Form["Quantity"]);
+            if (updatedQuantity == 0)
+            {
+                await RemoveCartItemsAsync(user.Id, id);
+                return RedirectToPage();
 
-            cartItem.Quantity = updatedQuantity;
-            await UpdateCartItemsAsync(cartItem);
+            }
+            else
+            {
+                cartItem.Quantity = updatedQuantity;
+                await UpdateCartItemsAsync(cartItem);
 
-            return RedirectToPage();
+                return RedirectToPage();
+            }           
         }
 
         public async Task<IActionResult> OnPostDeleteAsync(int id)
