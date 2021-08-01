@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 namespace PastryPlanet.Pages.Roles
 {
-	[Authorize(Roles="Admin")]
+	[Authorize(Roles="Arthur")]
 	public class CreateModel : PageModel
 	{
 		private readonly RoleManager<ApplicationRole> _roleManager;

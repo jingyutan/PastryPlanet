@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace PastryPlanet.Pages.Feedback
 {
-    [Authorize(Roles="User, Admin")]
+    [Authorize(Roles="Urien, Arthur")]
     public class IndexModel : PageModel
     {
         private readonly PastryPlanetContext _context;

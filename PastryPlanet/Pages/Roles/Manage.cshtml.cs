@@ -11,7 +11,7 @@ using System;
 using Microsoft.AspNetCore.Authorization;
 namespace PastryPlanet.Pages.Roles
 {
-	[Authorize(Roles = "Admin")]
+	[Authorize(Roles = "Arthur")]
 	public class ManageModel : PageModel
 	{
 		

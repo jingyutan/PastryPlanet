@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace PastryPlanet.Pages.Audit
 {
-    [Authorize(Roles = "Admin")] //Comment this out if you want to troubleshoot
+    [Authorize(Roles = "Arthur")]
     public class ProductAuditEditModel : PageModel
     {
         private readonly PastryPlanet.Data.PastryPlanetContext _context;

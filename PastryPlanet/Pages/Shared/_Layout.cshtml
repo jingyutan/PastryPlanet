@@ -35,7 +35,7 @@
                             </li>
                         }
 
-                        @if (User.IsInRole("Admin"))
+                        @if (User.IsInRole("Arthur"))
                         {
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Audit/Index">Audit</a>
@@ -44,7 +44,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Feedback/Index">Feedback</a>
                         </li>
-                        @if (User.IsInRole("Admin")) 
+                        @if (User.IsInRole("Arthur")) 
                         {
                             <li class="nav-item">
                              <a class="nav-link text-dark" asp-area="" asp-page="/Roles/Index">Roles</a>

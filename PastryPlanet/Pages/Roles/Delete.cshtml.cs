@@ -6,7 +6,7 @@ using PastryPlanet.Models;
 using Microsoft.AspNetCore.Authorization;
 namespace PastryPlanet.Pages.Roles
 {
-	[Authorize(Roles="Admin")]
+	[Authorize(Roles="Arthur")]
 	public class DeleteModel : PageModel
 	{
 		private readonly RoleManager<ApplicationRole> _roleManager;
