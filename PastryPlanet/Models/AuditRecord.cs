@@ -11,11 +11,13 @@ namespace PastryPlanet.Models
         [Key]
         public int Audit_ID { get; set; }
 
+        [RegularExpression("^[a-zA-Z]{1,50}*$", ErrorMessage = "Action can only have letters")]
         [Display(Name = "Audit Action")]
         public string AuditActionType { get; set; }
         // Could be  Login Success /Failure/ Logout, Create, Delete, View, Update
 
-        [Display(Name = "Performed By")]
+        [RegularExpression("^[a-zA-Z0-9@.]{1,50}*$", ErrorMessage = "Invalid Email!")]
+        [Display(Name = "Email of User")]
         public string Username { get; set; }
         //Logged in user performing the action
 
