@@ -11,6 +11,7 @@ using PastryPlanet.Models;
 
 namespace PastryPlanet.Pages.Cart
 {
+    
     public class IndexModel : PageModel
     {
         private readonly PastryPlanet.Data.PastryPlanetContext _context;
