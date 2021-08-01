@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace PastryPlanet.Pages.Products
 {
-    [Authorize(Roles="Admin")]
+    [Authorize(Roles="Arthur")]
     public class CreateModel : PageModel
     {
         private readonly PastryPlanet.Data.PastryPlanetContext _context;
